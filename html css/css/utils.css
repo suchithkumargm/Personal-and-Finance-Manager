@@ -1,0 +1,15 @@
+.btn {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.d-flex {
+    display: flex;
+}
+
+main {
+    margin-top: 11vh;
+}
