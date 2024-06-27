@@ -1,0 +1,45 @@
+header {
+    background-color: var(--white-color);
+    box-shadow: 3px 3px 3px #888888;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    width: 100%;
+}
+
+header img {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+}
+
+nav {
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
+}
+
+nav .title {
+    align-items: center;
+}
+
+nav h1 {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+}
+
+nav .profile {
+    align-items: center;
+}
+
+nav .profile img {
+    padding: 0 1rem;
+}
+
+nav .profile button.login {
+    min-height: 2.1rem;
+    padding: 0 1.2rem;
+    font-size: medium;
+    border-radius: 25px;
+}
