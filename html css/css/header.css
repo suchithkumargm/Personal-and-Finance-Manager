@@ -6,21 +6,25 @@ header {
     left: 0;
     z-index: 1000;
     width: 100%;
+    height: 3.8rem;
 }
 
 header img {
     width: 3rem;
     height: 3rem;
     border-radius: 50%;
+    cursor: pointer;
 }
 
 nav {
+    display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0.5rem;
 }
 
 nav .title {
+    display: flex;
     align-items: center;
 }
 
@@ -30,6 +34,7 @@ nav h1 {
 }
 
 nav .profile {
+    display: flex;
     align-items: center;
 }
 
