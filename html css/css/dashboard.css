@@ -1,0 +1,24 @@
+.dashboard {
+    padding: 3rem;
+}
+
+.dashboard h1 {
+    color: var(--primary-color);
+    font-size: 2rem;
+    font-weight: 500;
+    padding: 1rem 0;
+}
+
+.dashboard h3 {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    font-weight: 500;
+    padding: 0.5rem 0;
+}
+
+.dashboard .dashboard-containers {
+    border-radius: 15px;
+    height: 50vh;
+    opacity: 0.5;
+    box-shadow: 3px 3px 3px #888888;
+}
