@@ -12,13 +12,88 @@
 .dashboard h3 {
     color: var(--primary-color);
     font-size: 1.5rem;
-    font-weight: 500;
+    font-weight: 600;
     padding: 0.5rem 0;
 }
 
 .dashboard .dashboard-containers {
     border-radius: 15px;
     height: 50vh;
-    opacity: 0.5;
     box-shadow: 3px 3px 3px #888888;
+    display: flex;
+}
+
+.dashboard .dashboard-containers>div {
+    height: 100%;
+    width: 50%;
+    padding: 2rem;
+}
+
+.dashboard .dashboard-containers>div>h4 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+/* Remove the default checkbox appearance */
+.dashboard .dashboard-containers input[type="checkbox"] {
+    -webkit-appearance: none;
+    /* For Safari */
+    -moz-appearance: none;
+    /* For Firefox */
+    appearance: none;
+    width: 20px;
+    /* Set the size of the checkbox */
+    height: 20px;
+    /* Set the size of the checkbox */
+    background-color: var(--form-bg-color);
+    /* Set the background color */
+    border: none;
+    /* Remove the border */
+    border-radius: 3px;
+    /* Optional: add rounded corners */
+    cursor: pointer;
+    /* Optional: change the cursor to pointer */
+    position: relative;
+}
+
+/* Style the checkbox when it's checked */
+.dashboard .dashboard-containers input[type="checkbox"]:checked {
+    background-color: #4caf50;
+    /* Change the background color when checked */
+}
+
+/* Optional: Add a checkmark using ::after pseudo-element */
+.dashboard .dashboard-containers input[type="checkbox"]:checked::after {
+    content: "";
+    position: absolute;
+    top: 2px;
+    left: 6px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.dashboard .dashboard-containers ul {
+    padding: 1rem 0;
+}
+
+.dashboard .dashboard-containers ul li {
+    padding: 0.5rem 0;
+}
+
+.dashboard .dashboard-containers ul li label {
+    padding: 0 0 0 0.8rem;
+}
+
+.dashboard .dashboard-containers .completed-task>label {
+    text-decoration: line-through;
+}
+
+.dashboard .dashboard-containers .vertical-line {
+    width: 2px;
+    height: 80%;
+    background-color: #ccc;
 }
