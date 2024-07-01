@@ -15,7 +15,7 @@
     color: var(--black-color);
 }
 
-.container .right-container button {
+.container .right-container button.login {
     padding: 0.9rem;
     font-size: 1.2rem;
     font-weight: 400;
