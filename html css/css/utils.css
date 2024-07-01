@@ -43,3 +43,7 @@ main {
     scrollbar-width: none;
     /* Firefox */
 }
+
+a {
+    text-decoration: none;
+}
