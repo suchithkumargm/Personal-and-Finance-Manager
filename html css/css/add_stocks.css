@@ -1,0 +1,22 @@
+.add-stocks-inner-container {
+    height: 70vh;
+}
+
+.add-stocks-inner-container .form-container {
+    width: 70%;
+}
+
+.add-stocks-inner-container .two-inputs input:first-child {
+    margin-right: 0.5rem;
+}
+
+.add-stocks-inner-container .two-inputs input:last-child {
+    margin-left: 0.5rem;
+}
+
+.container .right-container button.add-stocks {
+    padding: 0.9rem;
+    font-size: 1.3rem;
+    font-weight: 400;
+    margin-top: 0.5rem;
+}
