@@ -9,6 +9,7 @@ import User from '../../models/User.js';
 dotenv.config();
 
 const JWT_SECRET = process.env.JWT_SECRET;
+const JWT_EXPIRATION = process.env.JWT_EXPIRATION;
 
 // Route to register a new user
 export const registerUser = async (req, res) => {
@@ -62,7 +63,7 @@ export const registerUser = async (req, res) => {
                 userName: newUser.userName,
             },
         };
-        const authToken = jwt.sign(data, JWT_SECRET);
+        const authToken = jwt.sign(data, JWT_SECRET, { expiresIn: JWT_EXPIRATION });
 
         res.json({ authToken });
 
@@ -74,6 +75,46 @@ export const registerUser = async (req, res) => {
         await session.abortTransaction();
         session.endSession();
 
+        console.error(error);
+        res.status(500).send("Internal Server Error");
+    }
+}
+
+// Route to authenticate a user
+// Route to authenticate a user
+export const loginUser = async (req, res) => {
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+    }
+
+    const { userName, password } = req.body;
+
+    try {
+        // Find the user by email
+        let user = await User.findOne({ userName });
+
+        if (!user) {
+            return res.status(400).json({ error: "Invalid user credentials" });
+        }
+
+        // Compare the entered password with the stored hashed password
+        const passwordMatch = await bcrypt.compare(password, user.password);
+
+        if (!passwordMatch) {
+            return res.status(400).json({ error: "Invalid user credentials" });
+        }
+
+        // Create an authentication token (JWT) for the authenticated user
+        const data = {
+            user: {
+                userName: user.userName,
+            }
+        };
+        const authToken = jwt.sign(data, JWT_SECRET, { expiresIn: JWT_EXPIRATION });
+        res.json({ authToken });
+    } catch (error) {
         console.error(error);
         res.status(500).send("Internal Server Error");
     }
