@@ -4,7 +4,6 @@ import { createRoot } from 'react-dom/client'; // Import createRoot from react-d
 import './styles/reset.css';
 import './styles/index.css';
 import './styles/utils.css';
-import './styles/container.css';
 
 import App from './App.js';
 

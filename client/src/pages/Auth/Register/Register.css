@@ -1,0 +1,9 @@
+.container .register-inner-container {
+    height: 80vh;
+}
+
+.container .right-container button.register {
+    padding: 0.9rem;
+    font-size: 1.2rem;
+    font-weight: 400;
+}

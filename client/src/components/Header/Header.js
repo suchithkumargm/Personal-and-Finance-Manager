@@ -1,5 +1,3 @@
-import { Link } from 'react-router-dom';
-
 import './Header.css';
 
 import logo from '../../assets/images/logo.png';
@@ -11,11 +9,11 @@ const Header = () => {
         <header>
             <nav>
                 <div className="title">
-                    <img id="profile-photo" src={logo} alt="logo" />
+                    <img src={logo} alt='profile' />
                     <h1>Personal and Finace Manager</h1>
                 </div>
                 <div className="profile">
-                    <img src={profilePhoto} alt="profile photo" />
+                    <img src={profilePhoto} alt='profile' />
                     <button className="btn login">Login</button>
                 </div>
             </nav>
