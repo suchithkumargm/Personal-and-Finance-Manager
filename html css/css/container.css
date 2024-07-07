@@ -1,0 +1,56 @@
+.container {
+    height: 100%;
+    min-height: calc(100vh - 3.8rem);
+    margin: auto;
+}
+
+.container .inner-container {
+    width: 70%;
+    border-radius: 15px;
+    box-shadow: 3px 3px 3px #888888;
+}
+
+.container .inner-container>div {
+    width: 50%;
+    height: 100%;
+}
+
+.container .left-container img {
+    width: 100%;
+    height: 100%;
+}
+
+.container .right-container {
+    flex-direction: column;
+    border-radius: 0 15px 15px 0;
+}
+
+.container .right-container form {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.container .right-container h3 {
+    color: var(--primary-color);
+    font-size: 2rem;
+    font-weight: 600;
+    text-align: center;
+    padding: 1rem;
+}
+
+.container .right-container form div {
+    padding: 0.5rem 0;
+}
+
+.container .right-container input {
+    width: 100%;
+    font-size: 1.2rem;
+    font-weight: 400;
+    border: none;
+    border-radius: 15px;
+    outline: none;
+    padding: 0.9rem;
+    background-color: var(--form-bg-color);
+    color: var(--form-input-color);
+}

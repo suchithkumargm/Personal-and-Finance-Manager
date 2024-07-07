@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap');
+
+html {
+    scroll-behavior: smooth;
+    /* height: 100%; */
+}
+
+body {
+    margin: 0;
+    font-family: 'Poppins', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+        sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-style: normal;
+    height: 100%;
+}
+
+:root {
+    --primary-color: #172B4D;
+    --secondary-color: #848484;
+    --background-color: #FFFFFF;
+    --black-color: #000000;
+    --white-color: #FFFFFF;
+    --profit-color: #00B386;
+    --loss-color: #CD390D;
+    --cash-color: #0000FF;
+    --table-heading-color: #7C7E8C;
+    --table-data-color: #44475B;
+    --form-bg-color: #F3F3F3;
+    --form-input-color: #848484;
+}
+
+::-webkit-scrollbar {
+    width: 0.6rem;
+    /* Set the width of the scrollbar */
+}
+
+/* Customize the scrollbar thumb (the draggable part) */
+::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    /* Change the color of the thumb */
+    border-radius: 0.375rem;
+    /* Add rounded corners to the thumb */
+}
+
+/* Customize the scrollbar track on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #474747;
+    /* Change the color on hover */
+}

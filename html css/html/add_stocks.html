@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal and Finance Manager</title>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/utils.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/container.css">
+    <link rel="stylesheet" href="../css/add_stocks.css">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="title">
+                <img id="profile-photo" src=" ../images/logo.png" alt="logo">
+                <h1>Personal and Finace Manager</h1>
+            </div>
+            <div class="profile">
+                <img src="../images/profilePhoto.jpeg" alt="profile photo">
+                <!-- <button class="btn login">Login</button> -->
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="container d-flex-center">
+            <div class="inner-container d-flex-center add-stocks-inner-container">
+                <div class="left-container">
+                    <img src="../images/loginAI.png" alt="AI logi image">
+                </div>
+                <div class="right-container d-flex-center bg-gradient">
+                    <div class="form-container">
+                        <h3>Add Stocks</h3>
+                        <form>
+                            <div class="d-flex-center">
+                                <input placeholder="Stock Name" type="text" id="stockname" name="stockname" required>
+                            </div>
+                            <div class="d-flex-center">
+                                <input placeholder="Date" type="date" id="date" name="date" required>
+                            </div>
+                            <div class="d-flex-center two-inputs">
+                                <input placeholder="Quantity" type="text" id="quantity" name="quantity" required>
+                                <input placeholder="Price" type="text" id="price" name="price" required>
+                            </div>
+                            <div class="d-flex-center">
+                                <input placeholder="Broker" type="text" id="broker" name="broker" required>
+                            </div>
+                            <button class="btn add-stocks" type="submit">+ Add</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>
