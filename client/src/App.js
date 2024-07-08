@@ -8,17 +8,15 @@ import Register from './pages/Auth/Register/Register.js';
 const App = () => {
 
     return (
-        <>
+        <Router>
             <Header />
             <main>
-                <Router>
-                    <Routes>
-                        <Route path="/auth/user/login" element={<Login />} />
-                        <Route path="/auth/user/register" element={<Register />} />
-                    </Routes>
-                </Router >
+                <Routes>
+                    <Route path="/auth/user/login" element={<Login />} />
+                    <Route path="/auth/user/register" element={<Register />} />
+                </Routes>
             </main>
-        </>
+        </Router >
     );
 }
 
