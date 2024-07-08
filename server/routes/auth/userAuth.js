@@ -2,6 +2,7 @@ import express from 'express';
 import { body } from 'express-validator';
 
 import { registerUser, loginUser } from '../../controllers/auth/userAuthController.js';
+import { verifyAccount, checkVerification } from '../../controllers/auth/verifyAccount.js';
 
 const router = express.Router();
 
@@ -25,6 +26,18 @@ router.post(
         body('password', 'Password should be at least 5 characters').isLength({ min: 5 }),
     ],
     loginUser
+);
+
+// ROUTE 3: Send Verification link to user email using: GET "/auth/user/verify-account". No login required
+router.get(
+    '/verify-account',
+    verifyAccount
+);
+
+// ROUTE 4: check if account is verified  using: GET "/auth/user/check-verification". No login required
+router.get(
+    '/check-verification',
+    checkVerification
 );
 
 export default router;

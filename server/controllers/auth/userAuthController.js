@@ -5,6 +5,7 @@ import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 
 import User from '../../models/User.js';
+import { sendVerificationEmail } from './verifyAccount.js';
 
 dotenv.config();
 
@@ -66,6 +67,8 @@ export const registerUser = async (req, res) => {
         const authToken = jwt.sign(data, JWT_SECRET, { expiresIn: JWT_EXPIRATION });
 
         res.json({ authToken });
+
+        await sendVerificationEmail(newUser.email, newUser.userName)
 
         // Commit the transaction
         await session.commitTransaction();

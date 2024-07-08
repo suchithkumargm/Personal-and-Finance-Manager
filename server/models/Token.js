@@ -2,8 +2,14 @@ import mongoose from 'mongoose';
 const { Schema } = mongoose;
 
 const TokenSchema = new Schema({
-    userId: {
-        type: Schema.Types.ObjectId,
+    userName: {
+        type: String,
+        required: true,
+        ref: "user",
+        unique: true
+    },
+    email: {
+        type: String,
         required: true,
         ref: "user",
         unique: true,
@@ -11,12 +17,7 @@ const TokenSchema = new Schema({
     token: {
         type: String,
         required: true
-    },
-    createdAt: {
-        type: Date,
-        default: Date.now,
-        expires: 3600
-    },
+    }
 });
 
 const Token = mongoose.model('token', TokenSchema);

@@ -75,7 +75,6 @@ const Register = () => {
             password: registerFormInput.password,
             profilePhoto: registerFormInput.profilePhoto
         };
-        console.log('form data', formData);
 
         try {
             const response = await fetch('http://localhost:5000/auth/user/register', {
@@ -85,8 +84,11 @@ const Register = () => {
                 },
                 body: JSON.stringify(formData)
             });
-            const result = await response.json();
-            console.log(result); // Handle success or error accordingly
+
+            if (response.ok) {
+                sendEmail();
+                openDialog();
+            }
         } catch (error) {
             console.error('Error:', error);
         }
@@ -94,10 +96,10 @@ const Register = () => {
 
     return (
         <>
-            <button onClick={openDialog}>Open Dialog</button>
             <Dialog isOpen={isDialogOpen} onClose={closeDialog}>
-                <h2>Verify Your Account</h2>
-                <p>We have sent an email to your registered email id</p>
+                <h2>Registration Successful !</h2>
+                <p>Please verify your Account. We have sent an email to your registered email id.</p>
+                <button type="button" className='btn dialog-btn' onClick={closeDialog}>Got It</button>
             </Dialog>
             <Container innerClass='register-inner-container'
                 left={
