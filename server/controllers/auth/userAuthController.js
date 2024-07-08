@@ -49,7 +49,7 @@ export const registerUser = async (req, res) => {
             userName: req.body.userName,
             password: hashedPassword,
             PIN: req.body.PIN,
-            photo: req.body.photo,
+            profilePhoto: req.body.profilePhoto,
             assets: req.body.assets,
             liabilities: req.body.liabilities,
             cash: req.body.cash,

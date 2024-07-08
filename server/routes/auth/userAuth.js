@@ -13,7 +13,6 @@ router.post(
         body('email', 'Enter a valid email').isEmail(),
         body('password', 'Password must be at least 5 characters').isLength({ min: 5 }),
         body('userName', 'user name must be at least 3 characters').isLength({ min: 3 }),
-        body('PIN', 'PIN must be of 4 digits').isLength({ min: 4 }),
     ],
     registerUser
 );

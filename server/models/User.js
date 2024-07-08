@@ -22,9 +22,8 @@ const UserSchema = new Schema({
     },
     PIN: {
         type: String,
-        required: true
     },
-    photo: {
+    profilePhoto: {
         type: String,
     },
     assets: {
