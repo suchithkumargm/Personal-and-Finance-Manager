@@ -34,7 +34,11 @@ const UserSchema = new Schema({
     },
     cash: {
         type: Number
-    }
+    },
+    verified: {
+        type: Boolean,
+        default: false
+    },
 });
 const User = mongoose.model('user', UserSchema);
 export default User;

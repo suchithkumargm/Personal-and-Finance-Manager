@@ -4,8 +4,20 @@ import './Register.css';
 
 import loginImage from '../../../assets/images/loginAI.png';
 import Container from '../../../components/Container/Container';
+import Dialog from "../../../components/Dialog/Dialog.js";
 
 const Register = () => {
+
+    const [isDialogOpen, setIsDialogOpen] = useState(false);
+
+    const openDialog = () => {
+        setIsDialogOpen(true);
+    };
+
+    const closeDialog = () => {
+        setIsDialogOpen(false);
+    };
+
     const [registerFormInput, setRegisterFormInput] = useState({
         name: '',
         email: '',
@@ -81,36 +93,43 @@ const Register = () => {
     };
 
     return (
-        <Container innerClass='register-inner-container'
-            left={
-                <img src={loginImage} alt='register' />
-            }
-            right={
-                <div className="form-container">
-                    <h3>Register your Account</h3>
-                    <form onSubmit={handleSubmit}>
-                        <div className="d-flex-center">
-                            <input placeholder="Name" type="text" id="name" name="name" required onChange={handleChange} />
-                        </div>
-                        <div className="d-flex-center">
-                            <input placeholder="Email" type="email" id="email" name="email" required onChange={handleChange} />
-                        </div>
-                        <div className="d-flex-center">
-                            <input placeholder="User Name" type="text" id="userName" name="userName" required onChange={handleChange} />
-                        </div>
-                        <div className="d-flex-center">
-                            <input placeholder="Password" type="password" id="password" name="password" required onChange={handleChange} />
-                        </div>
-                        <div className="d-flex-center photo-upload">
-                            <input label="image" type="file" id="profilePhoto" name="profilePhoto" accept='.jpeg, .png, .jpg' onChange={handleChange} />
-                            <button type="button" className="clear-file" onClick={handleClearImage}>X</button>
-                        </div>
-                        {errorMessage && <div className="error-message">{errorMessage}</div>}
-                        <button type="submit" disabled={!isImageValid} className={`btn register ${!isImageValid && 'disable-button'}`}>Next</button>
-                    </form>
-                </div>
-            }
-        />
+        <>
+            <button onClick={openDialog}>Open Dialog</button>
+            <Dialog isOpen={isDialogOpen} onClose={closeDialog}>
+                <h2>Verify Your Account</h2>
+                <p>We have sent an email to your registered email id</p>
+            </Dialog>
+            <Container innerClass='register-inner-container'
+                left={
+                    <img src={loginImage} alt='register' />
+                }
+                right={
+                    <div className="form-container">
+                        <h3>Register your Account</h3>
+                        <form onSubmit={handleSubmit}>
+                            <div className="d-flex-center">
+                                <input placeholder="Name" type="text" id="name" name="name" required onChange={handleChange} />
+                            </div>
+                            <div className="d-flex-center">
+                                <input placeholder="Email" type="email" id="email" name="email" required onChange={handleChange} />
+                            </div>
+                            <div className="d-flex-center">
+                                <input placeholder="User Name" type="text" id="userName" name="userName" required onChange={handleChange} />
+                            </div>
+                            <div className="d-flex-center">
+                                <input placeholder="Password" type="password" id="password" name="password" required onChange={handleChange} />
+                            </div>
+                            <div className="d-flex-center photo-upload">
+                                <input label="image" type="file" id="profilePhoto" name="profilePhoto" accept='.jpeg, .png, .jpg' onChange={handleChange} />
+                                <button type="button" className="clear-file" onClick={handleClearImage}>X</button>
+                            </div>
+                            {errorMessage && <div className="error-message">{errorMessage}</div>}
+                            <button type="submit" disabled={!isImageValid} className={`btn register ${!isImageValid && 'disable-button'}`}>Next</button>
+                        </form>
+                    </div>
+                }
+            />
+        </>
     );
 };
 
