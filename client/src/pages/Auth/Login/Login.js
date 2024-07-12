@@ -15,7 +15,7 @@ const Login = () => {
 
     const { dialogs, openDialog, closeDialog } = useContext(DialogContext);
 
-    const { isAccountVerified, setIsAccountVerified, checkAccountVerification } = useContext(AuthContext);
+    const { isAccountVerified, setIsAccountVerified, checkAccountVerification, checkLoginPinSetStatus } = useContext(AuthContext);
 
     const navigate = useNavigate();
 
@@ -48,12 +48,11 @@ const Login = () => {
 
             if (response.ok) {
                 if (isAccountVerified) {
-                    console.log("if", isAccountVerified)
                     const result = await response.json();
                     localStorage.setItem('authToken', result.authToken);
-                    navigate("/");
+                    await checkLoginPinSetStatus();
+                    navigate('/auth/user/pin')
                 } else {
-                    console.log("else", isAccountVerified)
                     openDialog('loginDialog');
                 }
 

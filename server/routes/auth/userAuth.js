@@ -3,7 +3,7 @@ import { body } from 'express-validator';
 
 import { registerUser, loginUser } from '../../controllers/auth/userAuthController.js';
 import { verifyAccount, checkVerification } from '../../controllers/auth/verifyAccount.js';
-import { checkLoginPinSetStatus } from '../../controllers/auth/LoginPin.js';
+import { checkLoginPinSetStatus, checkPin, setPin } from '../../controllers/auth/LoginPin.js';
 import fetchUser from '../../middleware/fetchUser.js'
 
 const router = express.Router();
@@ -45,8 +45,22 @@ router.post(
 // ROUTE 5: check if pin is set using: POST "/auth/user/check-login-pin-status". login required
 router.post(
     '/check-login-pin-status',
-    // fetchUser,
+    fetchUser,
     checkLoginPinSetStatus
+);
+
+// ROUTE 6: check if pin is correct: POST "/auth/user/check-pin". login required
+router.post(
+    '/check-pin',
+    fetchUser,
+    checkPin
+);
+
+// ROUTE 7: set pin: POST "/auth/user/set-pin". login required
+router.post(
+    '/set-pin',
+    fetchUser,
+    setPin
 );
 
 export default router;

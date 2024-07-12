@@ -42,8 +42,10 @@ export const AuthProvider = ({ children }) => {
 
             if (response.ok) {
                 const result = await response.json();
-                if (result.verified) {
-                    setIsAccountVerified(true);
+                if (result.pinSet) {
+                    setIsLoginPinSet(true);
+                } else {
+                    setIsLoginPinSet(false);
                 }
             }
 
@@ -53,7 +55,7 @@ export const AuthProvider = ({ children }) => {
     }
 
     return (
-        <AuthContext.Provider value={{ isAccountVerified, setIsAccountVerified, checkAccountVerification }}>
+        <AuthContext.Provider value={{ isAccountVerified, setIsAccountVerified, checkAccountVerification, isLoginPinSet, setIsLoginPinSet, checkLoginPinSetStatus }}>
             {children}
         </AuthContext.Provider>
     );

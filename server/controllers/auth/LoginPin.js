@@ -12,3 +12,16 @@ export const checkLoginPinSetStatus = async (req, res) => {
     }
     return res.json({ pinSet: true });
 }
+
+export const setPin = async (req, res) => {
+
+}
+
+export const checkPin = async (req, res) => {
+    const user = await User.findOne({ userName });
+    if (user.PIN === req.body.PIN) {
+        return res.status(200).json({ success: true })
+    } else {
+        return res.status(400).json({ success: false })
+    }
+}
