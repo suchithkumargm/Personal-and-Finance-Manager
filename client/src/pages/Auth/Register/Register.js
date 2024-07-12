@@ -86,7 +86,7 @@ const Register = () => {
             });
 
             if (response.ok) {
-                sendEmail();
+                //sendEmail();
                 openDialog();
             }
         } catch (error) {

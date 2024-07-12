@@ -1,0 +1,14 @@
+.pin-inner-container {
+    height: 70vh;
+}
+
+.pin-form-container .pin-h3 {
+    padding: 10rem;
+}
+
+.pin-form-container input.pin-inputs {
+    height: 50px;
+    width: 50px;
+    font-size: 2rem;
+    text-align: center;
+}
