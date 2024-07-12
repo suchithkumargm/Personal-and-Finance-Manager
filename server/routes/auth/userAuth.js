@@ -3,6 +3,8 @@ import { body } from 'express-validator';
 
 import { registerUser, loginUser } from '../../controllers/auth/userAuthController.js';
 import { verifyAccount, checkVerification } from '../../controllers/auth/verifyAccount.js';
+import { checkLoginPinSetStatus } from '../../controllers/auth/LoginPin.js';
+import fetchUser from '../../middleware/fetchUser.js'
 
 const router = express.Router();
 
@@ -34,10 +36,17 @@ router.get(
     verifyAccount
 );
 
-// ROUTE 4: check if account is verified  using: GET "/auth/user/check-verification". No login required
+// ROUTE 4: check if account is verified  using: POST "/auth/user/check-verification". No login required
 router.post(
     '/check-verification',
     checkVerification
+);
+
+// ROUTE 5: check if pin is set using: POST "/auth/user/check-login-pin-status". login required
+router.post(
+    '/check-login-pin-status',
+    // fetchUser,
+    checkLoginPinSetStatus
 );
 
 export default router;
