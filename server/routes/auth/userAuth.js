@@ -35,7 +35,7 @@ router.get(
 );
 
 // ROUTE 4: check if account is verified  using: GET "/auth/user/check-verification". No login required
-router.get(
+router.post(
     '/check-verification',
     checkVerification
 );

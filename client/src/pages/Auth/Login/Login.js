@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom'
 
@@ -6,17 +6,16 @@ import './Login.css';
 
 import loginImage from '../../../assets/images/loginAI.png';
 import Container from '../../../components/Container/Container.js';
-import Dialog from '../../../components/Dialog/Dialog.js';
+import Dialog from "../../../components/Dialog/Dialog.js";
+
+import { DialogContext } from '../../../contexts/DialogContext.js';
+import { AuthContext } from '../../../contexts/AuthContext.js';
 
 const Login = () => {
 
-    const [isAccountVerified, setIsAccountVerified] = useState(true);
-    const fetchAccountVerification = async () => {
+    const { dialogs, openDialog, closeDialog } = useContext(DialogContext);
 
-    }
-    useEffect({
-
-    }, [isAccountVerified])
+    const { isAccountVerified, setIsAccountVerified, checkAccountVerification } = useContext(AuthContext);
 
     const navigate = useNavigate();
 
@@ -24,7 +23,6 @@ const Login = () => {
         userName: '',
         password: ''
     });
-
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
@@ -36,41 +34,45 @@ const Login = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+        await checkAccountVerification(userLoginInput.userName);
 
-        const accountVerified = await fetchAccountVerification();
-        if (accountVerified) {
 
-            try {
-                const response = await fetch('http://localhost:5000/auth/user/login', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(userLoginInput),
-                });
+        try {
+            const response = await fetch('http://localhost:5000/auth/user/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(userLoginInput),
+            });
 
-                if (response.ok) {
+            if (response.ok) {
+                if (isAccountVerified) {
+                    console.log("if", isAccountVerified)
                     const result = await response.json();
                     localStorage.setItem('authToken', result.authToken);
                     navigate("/");
                 } else {
-                    alert("Invalid Credentials!");
+                    console.log("else", isAccountVerified)
+                    openDialog('loginDialog');
                 }
 
-            } catch (error) {
-                console.error('Error:', error);
+            } else {
+                alert("Invalid Credentials!");
             }
-        } else {
-            setIsAccountVerified(false);
+
+        } catch (error) {
+            console.error('Error:', error);
         }
+
     };
 
     return (
         <>
-            <Dialog isOpen={isDialogOpen} onClose={closeDialog}>
+            <Dialog isOpen={dialogs.loginDialog} onClose={() => closeDialog('loginDialog')}>
                 <h2>Account Verification Pending !</h2>
                 <p>Please verify your Account. We have sent an email to your registered email id.</p>
-                <button type="button" className='btn dialog-btn' onClick={closeDialog}>Got It</button>
+                <button type="button" className='btn dialog-btn' onClick={() => closeDialog('loginDialog')}>Got It</button>
             </Dialog>
             <Container innerClass='login-inner-container'
                 left={

@@ -1,23 +1,14 @@
-import React, { useState } from 'react';
-
+import React, { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Register.css';
-
 import loginImage from '../../../assets/images/loginAI.png';
 import Container from '../../../components/Container/Container';
 import Dialog from "../../../components/Dialog/Dialog.js";
+import { DialogContext } from '../../../contexts/DialogContext.js';
 
 const Register = () => {
-
-    const [isDialogOpen, setIsDialogOpen] = useState(false);
-
-    const openDialog = () => {
-        setIsDialogOpen(true);
-    };
-
-    const closeDialog = () => {
-        setIsDialogOpen(false);
-    };
-
+    const { isDialogOpen, dialogs, openDialog, closeDialog } = useContext(DialogContext);
+    const navigate = useNavigate();
     const [registerFormInput, setRegisterFormInput] = useState({
         name: '',
         email: '',
@@ -25,7 +16,6 @@ const Register = () => {
         password: '',
         profilePhoto: ''
     });
-
     const [errorMessage, setErrorMessage] = useState('');
     const [isImageValid, setIsImageValid] = useState(true);
 
@@ -86,8 +76,7 @@ const Register = () => {
             });
 
             if (response.ok) {
-                //sendEmail();
-                openDialog();
+                openDialog('registerDialog', () => navigate("/auth/user/login"));
             }
         } catch (error) {
             console.error('Error:', error);
@@ -96,10 +85,10 @@ const Register = () => {
 
     return (
         <>
-            <Dialog isOpen={isDialogOpen} onClose={closeDialog}>
-                <h2>Registration Successful !</h2>
-                <p>Please verify your Account. We have sent an email to your registered email id.</p>
-                <button type="button" className='btn dialog-btn' onClick={closeDialog}>Got It</button>
+            <Dialog isOpen={isDialogOpen && dialogs.registerDialog} onClose={() => closeDialog('registerDialog')}>
+                <h2>Registration Successful!</h2>
+                <p>Please verify your account. We have sent an email to your registered email ID.</p>
+                <button type="button" className='btn dialog-btn' onClick={() => closeDialog('registerDialog')}>Got It</button>
             </Dialog>
             <Container innerClass='register-inner-container'
                 left={

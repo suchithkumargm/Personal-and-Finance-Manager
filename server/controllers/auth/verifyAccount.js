@@ -58,6 +58,7 @@ export const checkVerification = async (req, res) => {
 
     let verified = false;
     if (user.verified) {
+        verified = true;
         return res.status(200).json({ verified, message: 'user is already verifed' });
     } else {
         let userToken = await Token.findOne({ userName });
