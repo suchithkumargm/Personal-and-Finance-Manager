@@ -84,7 +84,6 @@ export const registerUser = async (req, res) => {
 }
 
 // Route to authenticate a user
-// Route to authenticate a user
 export const loginUser = async (req, res) => {
     const errors = validationResult(req);
 
@@ -95,7 +94,7 @@ export const loginUser = async (req, res) => {
     const { userName, password } = req.body;
 
     try {
-        // Find the user by email
+        // Find the user by username
         let user = await User.findOne({ userName });
 
         if (!user) {

@@ -4,6 +4,7 @@ import bodyParser from 'body-parser';
 
 import connectToMongo from "./db.js";
 import authRoute from './routes/auth/userAuth.js';
+import userRoute from './routes/user/user.js';
 
 connectToMongo();
 const app = express();  //create an express app
@@ -18,6 +19,7 @@ app.use(bodyParser.json({ limit: '100mb' })); // Set the limit as per your requi
 app.use(bodyParser.urlencoded({ limit: '100mb', extended: true }));
 
 app.use('/auth/user', authRoute);
+app.use('/user', userRoute);
 
 app.listen(port, () => {
     console.log(`server started on http://localhost:${port}`);

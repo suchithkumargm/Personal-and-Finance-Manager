@@ -5,7 +5,6 @@ import './Header.css';
 import logo from '../../assets/images/logo.png';
 import profilePhoto from '../../assets/images/profilePhoto.jpeg';
 
-
 const Header = () => {
     return (
         <header>
