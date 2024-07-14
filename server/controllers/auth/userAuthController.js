@@ -5,6 +5,7 @@ import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 
 import User from '../../models/User.js';
+import { sendVerificationEmail } from './verifyAccount.js';
 
 dotenv.config();
 
@@ -49,7 +50,7 @@ export const registerUser = async (req, res) => {
             userName: req.body.userName,
             password: hashedPassword,
             PIN: req.body.PIN,
-            photo: req.body.photo,
+            profilePhoto: req.body.profilePhoto,
             assets: req.body.assets,
             liabilities: req.body.liabilities,
             cash: req.body.cash,
@@ -67,6 +68,8 @@ export const registerUser = async (req, res) => {
 
         res.json({ authToken });
 
+        await sendVerificationEmail(newUser.email, newUser.userName)
+
         // Commit the transaction
         await session.commitTransaction();
         session.endSession();
@@ -81,7 +84,6 @@ export const registerUser = async (req, res) => {
 }
 
 // Route to authenticate a user
-// Route to authenticate a user
 export const loginUser = async (req, res) => {
     const errors = validationResult(req);
 
@@ -92,7 +94,7 @@ export const loginUser = async (req, res) => {
     const { userName, password } = req.body;
 
     try {
-        // Find the user by email
+        // Find the user by username
         let user = await User.findOne({ userName });
 
         if (!user) {

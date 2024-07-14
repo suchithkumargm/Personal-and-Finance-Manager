@@ -2,6 +2,9 @@ import express from 'express';
 import { body } from 'express-validator';
 
 import { registerUser, loginUser } from '../../controllers/auth/userAuthController.js';
+import { verifyAccount, checkVerification } from '../../controllers/auth/verifyAccount.js';
+import { checkLoginPinSetStatus, checkPin, setPin } from '../../controllers/auth/LoginPin.js';
+import fetchUser from '../../middleware/fetchUser.js'
 
 const router = express.Router();
 
@@ -13,7 +16,6 @@ router.post(
         body('email', 'Enter a valid email').isEmail(),
         body('password', 'Password must be at least 5 characters').isLength({ min: 5 }),
         body('userName', 'user name must be at least 3 characters').isLength({ min: 3 }),
-        body('PIN', 'PIN must be of 4 digits').isLength({ min: 4 }),
     ],
     registerUser
 );
@@ -26,6 +28,39 @@ router.post(
         body('password', 'Password should be at least 5 characters').isLength({ min: 5 }),
     ],
     loginUser
+);
+
+// ROUTE 3: Send Verification link to user email using: GET "/auth/user/verify-account". No login required
+router.get(
+    '/verify-account',
+    verifyAccount
+);
+
+// ROUTE 4: check if account is verified  using: POST "/auth/user/check-verification". No login required
+router.post(
+    '/check-verification',
+    checkVerification
+);
+
+// ROUTE 5: check if pin is set using: POST "/auth/user/check-login-pin-status". login required
+router.post(
+    '/check-login-pin-status',
+    fetchUser,
+    checkLoginPinSetStatus
+);
+
+// ROUTE 6: check if pin is correct: POST "/auth/user/check-pin". login required
+router.post(
+    '/check-pin',
+    fetchUser,
+    checkPin
+);
+
+// ROUTE 7: set pin: POST "/auth/user/set-pin". login required
+router.post(
+    '/set-pin',
+    fetchUser,
+    setPin
 );
 
 export default router;

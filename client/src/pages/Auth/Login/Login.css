@@ -1,0 +1,22 @@
+.container .login-inner-container {
+    height: 70vh;
+}
+
+.container .right-container a {
+    text-align: start;
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.7rem 0;
+    transition: all 0.5s;
+}
+
+.container .right-container a:hover {
+    color: var(--black-color);
+}
+
+.container .right-container button.login {
+    padding: 0.9rem;
+    font-size: 1.2rem;
+    font-weight: 400;
+}

@@ -1,0 +1,5 @@
+.pin-input-div {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 2rem 0;
+}

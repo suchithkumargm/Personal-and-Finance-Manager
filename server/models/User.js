@@ -22,9 +22,8 @@ const UserSchema = new Schema({
     },
     PIN: {
         type: String,
-        required: true
     },
-    photo: {
+    profilePhoto: {
         type: String,
     },
     assets: {
@@ -35,7 +34,11 @@ const UserSchema = new Schema({
     },
     cash: {
         type: Number
-    }
+    },
+    verified: {
+        type: Boolean,
+        default: false
+    },
 });
 const User = mongoose.model('user', UserSchema);
 export default User;

@@ -1,0 +1,27 @@
+.container .register-inner-container {
+    height: 83vh;
+}
+
+.container .right-container button.register {
+    padding: 0.9rem;
+    font-size: 1.2rem;
+    font-weight: 400;
+}
+
+.container .right-container button.disable-button {
+    cursor: not-allowed;
+}
+
+.container .right-container .photo-upload {
+    position: relative;
+}
+
+.container .right-container button.clear-file {
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    position: absolute;
+    top: 1.5rem;
+    right: 1rem;
+    font-size: 1rem;
+}
