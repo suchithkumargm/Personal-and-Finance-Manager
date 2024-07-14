@@ -28,6 +28,8 @@ export const setPin = async (req, res) => {
 }
 
 export const checkPin = async (req, res) => {
+    const decoded = jwt.verify(req.header('authToken'), process.env.JWT_SECRET);
+    const userName = decoded.user.userName;
     const user = await User.findOne({ userName });
     if (user.PIN === req.body.PIN) {
         return res.status(200).json({ success: true })

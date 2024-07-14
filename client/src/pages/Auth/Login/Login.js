@@ -50,6 +50,7 @@ const Login = () => {
                 if (isAccountVerified) {
                     const result = await response.json();
                     localStorage.setItem('authToken', result.authToken);
+                    console.log('hi baby')
                     await checkLoginPinSetStatus();
                     navigate('/auth/user/pin')
                 } else {
