@@ -24,7 +24,7 @@ const PinInput = ({ length = 4, onPinSubmit }) => {
 
         // submit trigger
         const combinedPin = newPin.join("");
-        if (combinedPin.length === length) onPinSubmit(combinedPin);
+        if (combinedPin.length === length) onPinSubmit(combinedPin, resetPinInput);
 
         // Move to next input if current field is filled
         if (value && index < length - 1 && inputRefs.current[index + 1]) {
@@ -50,6 +50,13 @@ const PinInput = ({ length = 4, onPinSubmit }) => {
         ) {
             // Move focus to the previous input field on backspace
             inputRefs.current[index - 1].focus();
+        }
+    };
+
+    const resetPinInput = () => {
+        setPin(new Array(length).fill(""));
+        if (inputRefs.current[0]) {
+            inputRefs.current[0].focus();
         }
     };
 

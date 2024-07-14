@@ -4,8 +4,6 @@ export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
 
-    const [isAccountVerified, setIsAccountVerified] = useState(false);
-
     const [isLoginPinSet, setIsLoginPinSet] = useState(false);
 
     const checkAccountVerification = async (userName) => {
@@ -20,9 +18,9 @@ export const AuthProvider = ({ children }) => {
 
             if (response.ok) {
                 const result = await response.json();
-                if (result.verified) {
-                    setIsAccountVerified(true);
-                }
+                return result.verified;
+            } else {
+                console.log(response.json())
             }
 
         } catch (error) {
@@ -55,7 +53,7 @@ export const AuthProvider = ({ children }) => {
     }
 
     return (
-        <AuthContext.Provider value={{ isAccountVerified, setIsAccountVerified, checkAccountVerification, isLoginPinSet, setIsLoginPinSet, checkLoginPinSetStatus }}>
+        <AuthContext.Provider value={{ checkAccountVerification, isLoginPinSet, setIsLoginPinSet, checkLoginPinSetStatus }}>
             {children}
         </AuthContext.Provider>
     );

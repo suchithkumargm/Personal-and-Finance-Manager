@@ -65,11 +65,11 @@ export const checkVerification = async (req, res) => {
         if (userToken) {
             console.log('user', user.email, user.userName, userToken.token)
             await sendEmail(user.email, user.userName, userToken.token);
-            return res.json({ verified, mesage: 'Verification email sent again' });
+            return res.status(200).json({ verified, mesage: 'Verification email sent again' });
         } else {
             console.log('user', user.email, user.userName)
             await sendVerificationEmail(user.email, user.userName)
-            return res.json({ verified, message: 'Verification email sent' });
+            return res.status(200).json({ verified, message: 'Verification email sent' });
         }
     }
 

@@ -17,15 +17,11 @@ const EnterPin = () => {
     const [isReEnteringPin, setIsReEnteringPin] = useState(false);
     const [tempPIN, setTempPIN] = useState("");
 
-    // useEffect(async () => {
-    //     // Any side effect related to `isLoginPinSet` or `isReEnteringPin` can be handled here
-    // }, [isLoginPinSet, isReEnteringPin]);
-
-    const onPinSubmit = async (pin) => {
+    const onPinSubmit = async (pin, resetPinInput) => {
         if (!isLoginPinSet && !isReEnteringPin) {
             setTempPIN(pin);
-            console.log(tempPIN);
             setIsReEnteringPin(true);
+            resetPinInput(); // Clear PIN input fields
         } else if (!isLoginPinSet && isReEnteringPin) {
             if (tempPIN === pin) {
                 try {
@@ -35,11 +31,12 @@ const EnterPin = () => {
                             'Content-Type': 'application/json',
                             'authToken': localStorage.getItem('authToken')
                         },
-                        body: JSON.stringify({ pin }),
+                        body: JSON.stringify({ PIN: pin }),
                     });
 
                     if (response.ok) {
                         const result = await response.json();
+                        alert("Login PIN set successfully");
                         navigate('/auth/user/pin')
                     } else {
                         alert("Re-Enter PIN doesn't match");
@@ -50,6 +47,7 @@ const EnterPin = () => {
                     console.error('Error:', error);
                 }
                 setIsLoginPinSet(true);
+                resetPinInput(); // Clear PIN input fields
             } else {
                 alert('Re-entered PIN does not match');
             }
@@ -69,16 +67,17 @@ const EnterPin = () => {
                     if (result.success) {
                         navigate("/")
                     } else {
-                        alert("wrong pin")
+                        alert("Invalid PIN")
                     }
                 } else {
-                    console.log(response.json())
+                    alert("Some error occured");
 
                 }
 
             } catch (error) {
                 console.error('Error:', error);
             }
+            resetPinInput(); // Clear PIN input fields
         }
     };
 

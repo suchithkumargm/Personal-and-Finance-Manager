@@ -15,7 +15,7 @@ const Login = () => {
 
     const { dialogs, openDialog, closeDialog } = useContext(DialogContext);
 
-    const { isAccountVerified, setIsAccountVerified, checkAccountVerification, checkLoginPinSetStatus } = useContext(AuthContext);
+    const { checkAccountVerification, checkLoginPinSetStatus } = useContext(AuthContext);
 
     const navigate = useNavigate();
 
@@ -34,8 +34,7 @@ const Login = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        await checkAccountVerification(userLoginInput.userName);
-
+        const isVerified = await checkAccountVerification(userLoginInput.userName);
 
         try {
             const response = await fetch('http://localhost:5000/auth/user/login', {
@@ -47,10 +46,9 @@ const Login = () => {
             });
 
             if (response.ok) {
-                if (isAccountVerified) {
+                if (isVerified) {
                     const result = await response.json();
                     localStorage.setItem('authToken', result.authToken);
-                    console.log('hi baby')
                     await checkLoginPinSetStatus();
                     navigate('/auth/user/pin')
                 } else {
