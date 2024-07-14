@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from 'react';
+import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom'
 
 import loginImage from '../../../assets/images/loginAI.png';
@@ -35,7 +35,6 @@ const EnterPin = () => {
                     });
 
                     if (response.ok) {
-                        const result = await response.json();
                         alert("Login PIN set successfully");
                         navigate('/auth/user/pin')
                     } else {
