@@ -77,6 +77,9 @@ const Register = () => {
 
             if (response.ok) {
                 openDialog('registerDialog', () => navigate("/auth/user/login"));
+            } else {
+                const result = await response.json();
+                alert(result.error)
             }
         } catch (error) {
             console.error('Error:', error);

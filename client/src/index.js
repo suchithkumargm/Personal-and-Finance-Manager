@@ -6,7 +6,7 @@ import './styles/index.css';
 import './styles/utils.css';
 
 import App from './App.js';
-import AppProviders from './AppProviders.js';
+import AppProviders from './utils/AppProviders.js';
 
 const root = createRoot(document.getElementById('root')); // Use createRoot to create a root
 
