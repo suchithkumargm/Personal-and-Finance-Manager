@@ -25,7 +25,10 @@ const Header = () => {
                         currentLoggedInUser.userName ?
                             <button className="btn login" onClick={userLogout}>Logout</button>
                             :
-                            <Link to="/auth/user/login"><button className="btn login">Login</button></Link>
+                            <>
+                                <Link to="/auth/user/login"><button className="btn login">Login</button></Link>
+                                <Link to="/auth/user/register"><button className="btn login">Register</button></Link>
+                            </>
                     }
                 </div>
             </nav>
