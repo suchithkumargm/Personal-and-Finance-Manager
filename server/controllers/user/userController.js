@@ -1,17 +1,19 @@
 import dotenv from 'dotenv';
+import jwt from 'jsonwebtoken';
 
 import User from '../../models/User.js';
 
 dotenv.config();
 
 const JWT_SECRET = process.env.JWT_SECRET;
-const JWT_EXPIRATION = process.env.JWT_EXPIRATION;
 
 // Route to get details of logged-in  user
 export const fetchUserDetails = async (req, res) => {
-    const userName = req.body.userName;
 
     try {
+        const token = req.header('authToken');
+        const verified = jwt.verify(token, JWT_SECRET);
+        const userName = verified.user.userName;
         let user = await User.findOne({ userName });
 
         if (!user) {

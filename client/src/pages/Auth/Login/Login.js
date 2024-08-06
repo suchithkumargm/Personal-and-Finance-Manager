@@ -10,12 +10,15 @@ import Dialog from "../../../components/Dialog/Dialog.js";
 
 import { DialogContext } from '../../../contexts/DialogContext.js';
 import { AuthContext } from '../../../contexts/AuthContext.js';
+import { UserContext } from '../../../contexts/UserContext.js';
 
 const Login = () => {
 
     const { dialogs, openDialog, closeDialog } = useContext(DialogContext);
 
     const { checkAccountVerification, checkLoginPinSetStatus } = useContext(AuthContext);
+
+    const { fetchUserDetails } = useContext(UserContext);
 
     const navigate = useNavigate();
 
@@ -49,6 +52,7 @@ const Login = () => {
                 if (isVerified) {
                     const result = await response.json();
                     localStorage.setItem('authToken', result.authToken);
+                    await fetchUserDetails();
                     await checkLoginPinSetStatus();
                     navigate('/auth/user/pin')
                 } else {
